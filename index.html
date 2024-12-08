@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Guitarras Eléctricas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 8px;
+            margin: 5px;
+            background-color: #f2f2f2;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Guitarras Eléctricas</h1>
+    <ul id="guitar-list"></ul>
+
+    <script>
+        // URL del archivo JSON en tu repositorio de GitHub
+        const jsonUrl = 'https://raw.githubusercontent.com/Dvn2014/Evidence2AnaliticaData/main/guitarras.json';
+
+        // Función para cargar y mostrar los datos del JSON
+        fetch(jsonUrl)
+            .then(response => response.json())
+            .then(data => {
+                const guitarListElement = document.getElementById('guitar-list');
+                data.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = item.titulo;  // Mostrar el título de la guitarra
+                    guitarListElement.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error al cargar el archivo JSON:', error);
+            });
+    </script>
+</body>
+</html>
